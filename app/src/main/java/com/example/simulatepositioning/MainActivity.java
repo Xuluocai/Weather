@@ -402,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return R.drawable.a0;
     }
 
-    //当前天气
+
     private void getRealWeather() {
         String realUrl = "https://restapi.amap.com/v3/weather/weatherInfo?city=CITY&key=c1cc8b7afea3b4d8c364c66e208a717c&extensions=base";
         realUrl = realUrl.replace("CITY", city);
@@ -503,31 +503,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return R.drawable.qing;
     }
 
-    /**
-     * Android原生分享功能
-     * 默认选取手机所有可以分享的APP
-     */
+
     public void allShare(){
         Intent share_intent = new Intent();
-        share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
-        share_intent.setType("text/plain");//设置分享内容的类型
-        share_intent.putExtra(Intent.EXTRA_SUBJECT, "I'am in the"+city);//添加分享内容标题
-        share_intent.putExtra(Intent.EXTRA_TEXT, "I'am in the"+city+"Weather:"+tv_weather.getText()+",Humidity:"+tv_humidity.getText()+",Temperature:"+tv_temp.getText()+"°");//添加分享内容
-        //创建分享的Dialog
+        share_intent.setAction(Intent.ACTION_SEND);
+        share_intent.setType("text/plain");
+        share_intent.putExtra(Intent.EXTRA_SUBJECT, "I'am in the"+city);
+        share_intent.putExtra(Intent.EXTRA_TEXT, "I'am in the"+city+"Weather:"+tv_weather.getText()+",Humidity:"+tv_humidity.getText()+",Temperature:"+tv_temp.getText()+"°");
+
         share_intent = Intent.createChooser(share_intent, "share");
         startActivity(share_intent);
     }
-    /**
-     * Android原生分享功能
-     * @param appName:要分享的应用程序名称
-     */
+
     private void share(String appName) {
         Intent share_intent = new Intent();
         share_intent.setAction(Intent.ACTION_SEND);
         share_intent.setType("text/plain");
-        share_intent.putExtra(Intent.EXTRA_SUBJECT, "I'am in the"+city);//添加分享内容标题
-        share_intent.putExtra(Intent.EXTRA_TEXT, "I'am in the"+city+"Weather："+tv_weather+",Humidity："+tv_humidity+",Temperature："+tv_temp+"°");//添加分享内容
-        //创建分享的Dialog
+        share_intent.putExtra(Intent.EXTRA_SUBJECT, "I'am in the"+city);
+        share_intent.putExtra(Intent.EXTRA_TEXT, "I'am in the"+city+"Weather："+tv_weather+",Humidity："+tv_humidity+",Temperature："+tv_temp+"°");
+
         share_intent = Intent.createChooser(share_intent, "share");
         startActivity(share_intent);
     }
