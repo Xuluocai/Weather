@@ -81,7 +81,7 @@ public class likeCity extends AppCompatActivity {
             final TextView qw=(TextView) view.findViewById(R.id.qw);
             final ImageView tqImage=(ImageView)view.findViewById(R.id.tqImage);
             final LinearLayout bg=view.findViewById(R.id.bg);
-            //组件一拿到，开始组装
+
             likeCity.setText(city.get(position));
 
             String realUrl = "https://restapi.amap.com/v3/weather/weatherInfo?city=CITY&key=c1cc8b7afea3b4d8c364c66e208a717c&extensions=base";

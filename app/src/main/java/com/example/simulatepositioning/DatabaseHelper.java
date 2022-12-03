@@ -17,8 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql="create table citys(id INTEGER primary key autoincrement,city varchar(30) not null)";
         try {
-            db.execSQL("drop table if exists citys");//执行数据库命令
-            db.execSQL(sql);//执行数据库命令
+            db.execSQL("drop table if exists citys");
+            db.execSQL(sql);
         }catch (SQLException e){
             e.printStackTrace();
         }

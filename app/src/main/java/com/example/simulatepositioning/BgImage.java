@@ -146,7 +146,7 @@ public class BgImage extends AppCompatActivity implements View.OnClickListener {
 
 
 
-    //如上参需要64位编码可调用此方法，不需要可以忽略
+
     public static String bitmapToBase64(Bitmap bitmap) {
 
         String result = null;

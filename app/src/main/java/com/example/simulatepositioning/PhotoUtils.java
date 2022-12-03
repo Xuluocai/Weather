@@ -29,10 +29,7 @@ public class PhotoUtils {
         activity.startActivityForResult(intentCamera, requestCode);
     }
 
-    /**
-     * @param activity    当前activity
-     * @param requestCode 打开相册的请求码
-     */
+
     public static void openPic(Activity activity, int requestCode) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
         photoPickerIntent.setType("image/*");

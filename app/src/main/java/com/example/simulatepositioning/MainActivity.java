@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_search=findViewById(R.id.city);
         initialization();
 
-        Intent intent = getIntent();//getIntent();获取当前intent对象
+        Intent intent = getIntent();
         if (intent.getStringExtra("city")!=null){
             city = intent.getStringExtra("city");
         }else {
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bg=findViewById(R.id.bg);
     }
 
-    private void reFreshData() { //加载所有的数据,用于初始化，添加，删除，修改后的数据
+    private void reFreshData() {
         List<String> cityList=dao.getAll();
         list=new ArrayList<>();
         listCity=new ArrayList<>();
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void insertData() {//添加城市
+    private void insertData() {
         dao.insert(city);
         reFreshData();
     }
@@ -153,15 +153,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==R.id.city){//城市选择
+        if (view.getId()==R.id.city){
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm.isActive()) {
                 imm.hideSoftInputFromWindow(view.getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
-                selectAddress();//调用CityPicker选取区域
+                selectAddress();
 
             }
-        }else if (view.getId()==R.id.like){//收藏城市
+        }else if (view.getId()==R.id.like){
             if (listCity.contains(city)){
                 deleteData();
                 Toast.makeText(MainActivity.this, "Unfollow success!", Toast.LENGTH_SHORT).show();
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Follow success!", Toast.LENGTH_SHORT).show();
                 likes.setImageResource(R.drawable.likes);
             }
-        }else if (view.getId()==R.id.likeCityBtn){//进入收藏城市的页面
+        }else if (view.getId()==R.id.likeCityBtn){
             Intent intent=new Intent(MainActivity.this,likeCity.class);
             startActivity(intent);
         }else if (view.getId()==R.id.map){
@@ -205,16 +205,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .onlyShowProvinceAndCity(false)
                 .build();
         cityPicker.show();
-        //监听方法，获取选择结果
+
         cityPicker.setOnCityItemClickListener(new CityPicker.OnCityItemClickListener() {
             @Override
             public void onSelected(String... citySelected) {
-                //省份
+
                 String province = citySelected[0];
-                //城市
 
 
-                //区县（如果设定了两级联动，那么该项返回空）
+
+
                 city = citySelected[2];
                 if (!listCity.contains(city)){
                     likes.setImageResource(R.drawable.like);
@@ -223,9 +223,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 getRealWeather();
                 getForcastWeather();
-                //邮编
+
                 String code = citySelected[3];
-                //为TextView赋值
+
             }
         });
     }
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         StringBuffer sb1 = new StringBuffer();
 
                                         sb1.append("Today · ");
-                                        String we=fc1.getDayweather()+"转"+fc1.getNightweather();
+                                        String we=fc1.getDayweather()+"to"+fc1.getNightweather();
                                         sb1.append(we).append("  ");
                                         for (int i = we.length(); i <30 ; i++) {
                                             sb1.append(" ");
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         StringBuffer sb2 = new StringBuffer();
 
                                         sb2.append("Tomorrow· ");
-                                        we=fc2.getDayweather()+"转"+fc2.getNightweather();
+                                        we=fc2.getDayweather()+"to"+fc2.getNightweather();
                                         sb2.append(we).append("  ");
                                         for (int i = we.length(); i <30 ; i++) {
                                             sb2.append(" ");
@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         StringBuffer sb3 = new StringBuffer();
 
                                         sb3.append("The day after tomorrow · ");
-                                        we=fc3.getDayweather()+"转"+fc3.getNightweather();
+                                        we=fc3.getDayweather()+"to"+fc3.getNightweather();
                                         sb3.append(we).append("  ");
                                         for (int i = we.length(); i <30 ; i++) {
                                             sb3.append(" ");
@@ -452,7 +452,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 iv.setImageResource(Util.getPicByWeather(weatherInfo.getWeather()));
                                 tv_temp.setText(weatherInfo.getTemperature()+"");
 
-                                Intent intent = getIntent();//getIntent();获取当前intent对象
+                                Intent intent = getIntent();
                                 if (intent.getStringExtra("bgimage")!=null && !intent.getStringExtra("bgimage").equals("")){
                                     bg.setBackgroundResource(Integer.parseInt(intent.getStringExtra("bgimage")));
                                 }else{

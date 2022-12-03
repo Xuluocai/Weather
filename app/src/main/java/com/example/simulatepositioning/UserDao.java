@@ -10,13 +10,13 @@ import java.util.*;
 
 public class UserDao {
     private DatabaseHelper dbhelper;
-    private SQLiteDatabase db;//增删改查的操作
+    private SQLiteDatabase db;
 
     UserDao(Context context){
         dbhelper=new DatabaseHelper(context);
     }
 
-    public void insert(String city){//添加数据
+    public void insert(String city){
         ContentValues values =new ContentValues();
         values.put("city",city);
         db=dbhelper.getWritableDatabase();
@@ -24,7 +24,7 @@ public class UserDao {
         db.close();
     }
 
-//    数据修改
+
     public void update(String city){
         db=dbhelper.getWritableDatabase();
         ContentValues values=new ContentValues();
@@ -33,13 +33,13 @@ public class UserDao {
         db.close();
     }
 
-//    数据删除
+
     public void delete(String city){
         db=dbhelper.getWritableDatabase();
         db.delete("citys","city=?",new String[]{city});
         db.close();
     }
-//    查询全部数据
+
     public List<String> getAll(){
         List<String> city=new ArrayList<>();
         db=dbhelper.getReadableDatabase();
@@ -53,7 +53,7 @@ public class UserDao {
         }
         return city;
     }
-//    条件查询
+
     public List<String> query(String city){
         List<String> users=new ArrayList<>();
         db=dbhelper.getReadableDatabase();
